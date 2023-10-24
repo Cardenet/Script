@@ -117,7 +117,7 @@ while true; do
         pull_changes
         ;;
     8)
-        pull_changes
+        fast_pull_changes_pull_changes
         ;;
     9)
         merge_branch
