@@ -49,6 +49,9 @@ pull_changes() {
 
     git pull origin "$pull_branch"
 }
+fast_pull_changes() {
+    git pull origin main
+}
 
 merge_branch() {
     read -p "Escriba la rama a fusionar en la rama actual (merge): " merge_branch
@@ -81,12 +84,13 @@ while true; do
     echo "4) Guardar cambios (commit)"
     echo "5) Subir cambios (push)"
     echo "6) Subida rapida y facil de los cambios (add, commit y push)"
-    echo "7) Descargar cambios (pull)"
-    echo "8) Mezclar ramas (merge)"
-    echo "9) Ver el estado del git (status)"
-    echo "10) Mirar si hay algun cambio disponible (fetch)"
-    echo "11) Resetear a un guardado (muy peligroso!!!!, reset)"
-    echo "12) Salir"
+    echo "7) Descargar cambios de la rama especifica (pull)"
+    echo "8) Descargar cambios rapido (pull)"
+    echo "9) Mezclar ramas (merge)"
+    echo "10) Ver el estado del git (status)"
+    echo "11) Mirar si hay algun cambio disponible (fetch)"
+    echo "12) Resetear a un guardado (muy peligroso!!!!, reset)"
+    echo "13) Salir"
 
     read -p "Escriba la opcion: " choice
 
@@ -113,18 +117,21 @@ while true; do
         pull_changes
         ;;
     8)
-        merge_branch
+        pull_changes
         ;;
     9)
-        git_status
+        merge_branch
         ;;
     10)
-        git_fetch
+        git_status
         ;;
     11)
-        git_reset
+        git_fetch
         ;;
     12)
+        git_reset
+        ;;
+    13)
         echo "Hasta luego..."
         break
         ;;
