@@ -6,7 +6,14 @@ clone_repo() {
     read -p "Escribe el URL del repositorio: " repo_url
     read -p "Escribe la ruta de la carpeta de destino: " clone_dir
 
-    git clone "$repo_url" "$clone_dir"
+    # Expresión regular para validar URLs de GitHub
+    github_url_regex='^(https?|git)://(www\.)?github\.com/[a-zA-Z0-9-]+/[a-zA-Z0-9_.-]+$'
+
+    if [[ $repo_url =~ $github_url_regex ]]; then
+        git clone "$repo_url" "$clone_dir"
+    else
+        echo "URL de GitHub no válido. Por favor, proporciona un enlace válido de GitHub."
+    fi
 }
 
 create_branch() {
