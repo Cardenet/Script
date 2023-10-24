@@ -24,27 +24,27 @@ create_branch() {
 
 stage_changes() {
     echo "Esta opción se utiliza en caso de solo modificar algun archivo especifico"
-    read -p "Introduzca los nombres de los archivos a escenificar (separados por espacios) el add: " files
+    read -p "Introduzca los nombres de los archivos a escenificar (separados por espacios): " files
 
     git add ${files}
 }
 
 commit_changes() {
-    read -p "Escriba el comentario de guardado (commit): " commit_msg
+    read -p "Escriba el comentario de guardado: " commit_msg
 
     git commit -m "$commit_msg"
 }
 
 push_changes() {
     echo "Esta opción se utiliza en caso de subirlo a una rama diferente"
-    read -p "Escribra la branch para subirla (push): " push_branch
+    read -p "Escribra la branch para subirla: " push_branch
 
     git push origin "$push_branch"
 }
 
 add_commit_push() {
     echo "Esta opción se utiliza en caso de hacer una subida rapida y facil"
-    read -p "Escriba el comentario de guardado (commit): " commit_msg
+    read -p "Escriba el comentario de guardado: " commit_msg
 
     git add .
     git commit -m "$commit_msg"
@@ -52,7 +52,7 @@ add_commit_push() {
 }
 
 pull_changes() {
-    read -p "Pon el nombre de la rama(branch): " pull_branch
+    read -p "Pon el nombre de la rama: " pull_branch
 
     git pull origin "$pull_branch"
 }
@@ -61,7 +61,7 @@ fast_pull_changes() {
 }
 
 merge_branch() {
-    read -p "Escriba la rama a fusionar en la rama actual (merge): " merge_branch
+    read -p "Escriba la rama a fusionar en la rama actual: " merge_branch
 
     git merge "$merge_branch"
 }
