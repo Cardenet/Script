@@ -75,20 +75,20 @@ git_reset() {
 while true; do
 
     echo "Selecciona una opción:"
-    echo "1) Descargar un repositorio"
-    echo "2) Create new branch"
-    echo "3) Stage changes"
-    echo "4) Commit changes"
-    echo "5) Push changes"
-    echo "6) Add, commit and push changes"
-    echo "7) Pull changes"
-    echo "8) Merge branch"
-    echo "9) Git status"
-    echo "10) Git fetch"
-    echo "11) Git reset"
-    echo "12) Exit"
+    echo "1) Descargar un repositorio (clone)"
+    echo "2) Crear una nueva rama (checkout)"
+    echo "3) Escenificar cambios (add)"
+    echo "4) Guardar cambios (commit)"
+    echo "5) Subir cambios (push)"
+    echo "6) Subida rapida y facil de los cambios (add, commit y push)"
+    echo "7) Descargar cambios (pull)"
+    echo "8) Mezclar ramas (merge)"
+    echo "9) Ver el estado del git (status)"
+    echo "10) Mirar si hay algun cambio disponible (fetch)"
+    echo "11) Resetear a un guardado (muy peligroso!!!!, reset)"
+    echo "12) Salir"
 
-    read -p "Enter choice: " choice
+    read -p "Escriba la opcion: " choice
 
     case $choice in
     1)
