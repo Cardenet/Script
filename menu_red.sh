@@ -3,7 +3,7 @@
 # Configuración de IP
 #Consideracions;
     #T’has de documentar com realitzar una Funció que retorni un Menú
-    #T’has de documentar com realitzar funcions en Bash
+    #T’has de documentar com realitzar funcions en Bash hola
     #T’has de documentar sobre com configurar una IP estàtica i una IP dinàmica amb l’ordre shell nmcli, con eliminar una connexió de xarxa amb nmcli, etc
     #S’ha d’entregar el fitxer .sh
 get_menu() {

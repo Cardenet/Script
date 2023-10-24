@@ -67,7 +67,9 @@ merge_branch() {
 }
 
 git_status() {
-    git status
+    echo "Para mirar que archivos has modificado"
+    echo "--------------------------------------------------------------------"
+    git status --porcelain | awk '{$1 = ""; print substr($0, 2)}'
 }
 
 git_fetch() {
