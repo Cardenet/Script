@@ -125,10 +125,10 @@ while true; do
         git_reset
         ;;
     12)
-        echo "Exiting..."
+        echo "Hasta luego..."
         break
         ;;
-    *) echo "Invalid choice" ;;
+    *) echo "Opcion invalida" ;;
     esac
 
 done
