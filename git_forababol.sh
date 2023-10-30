@@ -70,6 +70,7 @@ git_status() {
     echo "Para mirar que archivos has modificado"
     echo "--------------------------------------------------------------------"
     git status --porcelain | awk '{$1 = ""; print substr($0, 2)}'
+    echo "--------------------------------------------------------------------"
 }
 
 git_fetch() {
