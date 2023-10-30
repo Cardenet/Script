@@ -99,8 +99,7 @@ while true; do
     echo "9) Mezclar ramas (merge)"
     echo "10) Ver el estado del git (status)"
     echo "11) Mirar si hay algun cambio disponible (fetch)"
-    echo "12) Resetear a un guardado (muy peligroso!!!!, reset)"
-    echo "13) Salir"
+    echo "12) Salir"
 
     read -p "Escriba la opcion: " choice
 
@@ -139,9 +138,6 @@ while true; do
         git_fetch
         ;;
     12)
-        git_reset
-        ;;
-    13)
         echo "Hasta luego..."
         break
         ;;
