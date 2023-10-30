@@ -3,9 +3,10 @@
 # Functions
 
 clone_repo() {
+    echo "--------------------------------------------------------------------"
     read -p "Escribe el URL del repositorio: " repo_url
     read -p "Escribe la ruta de la carpeta de destino: " clone_dir
-
+    echo "--------------------------------------------------------------------"
     # Expresión regular para validar URLs de GitHub
     github_url_regex='^(https?|git)://(www\.)?github\.com/[a-zA-Z0-9-]+/[a-zA-Z0-9_.-]+$'
 
@@ -14,37 +15,51 @@ clone_repo() {
     else
         echo "URL de GitHub no válido. Por favor, proporciona un enlace válido de GitHub."
     fi
+    echo "--------------------------------------------------------------------"
 }
 
 create_branch() {
+    echo "--------------------------------------------------------------------"
     read -p "Pon el nombre de la rama: " branch_name
+    echo "--------------------------------------------------------------------"
 
     git checkout -b "$branch_name"
+    echo "--------------------------------------------------------------------"
 }
 
 stage_changes() {
+    echo "--------------------------------------------------------------------"
     echo "Esta opción se utiliza en caso de solo modificar algun archivo especifico"
     read -p "Introduzca los nombres de los archivos a escenificar (separados por espacios): " files
+    echo "--------------------------------------------------------------------"
 
     git add ${files}
+    echo "--------------------------------------------------------------------"
+
 }
 
 commit_changes() {
+    echo "--------------------------------------------------------------------"
     read -p "Escriba el comentario de guardado: " commit_msg
 
     git commit -m "$commit_msg"
+    echo "--------------------------------------------------------------------"
 }
 
 push_changes() {
+    echo "--------------------------------------------------------------------"
     echo "Esta opción se utiliza en caso de subirlo a una rama diferente"
     read -p "Escribra la branch para subirla: " push_branch
 
     git push origin "$push_branch"
+    echo "--------------------------------------------------------------------"
 }
 
 add_commit_push() {
+    echo "--------------------------------------------------------------------"
     echo "Esta opción se utiliza en caso de hacer una subida rapida y facil"
     read -p "Escriba el comentario de guardado: " commit_msg
+    echo "--------------------------------------------------------------------"
 
     git add .
     git commit -m "$commit_msg"
@@ -52,21 +67,28 @@ add_commit_push() {
 }
 
 pull_changes() {
+    echo "--------------------------------------------------------------------"
     read -p "Pon el nombre de la rama: " pull_branch
 
     git pull origin "$pull_branch"
+    echo "--------------------------------------------------------------------"
 }
 fast_pull_changes() {
+    echo "--------------------------------------------------------------------"
     git pull origin main
+    echo "--------------------------------------------------------------------"
 }
 
 merge_branch() {
+    echo "--------------------------------------------------------------------"
     read -p "Escriba la rama a fusionar en la rama actual: " merge_branch
 
     git merge "$merge_branch"
+    echo "--------------------------------------------------------------------"
 }
 
 git_status() {
+    echo "--------------------------------------------------------------------"
     echo "Para mirar que archivos has modificado"
     echo "--------------------------------------------------------------------"
     git status --porcelain | awk '{$1 = ""; print substr($0, 2)}'
@@ -74,14 +96,11 @@ git_status() {
 }
 
 git_fetch() {
+    echo "--------------------------------------------------------------------"
     git fetch
+    echo "--------------------------------------------------------------------"
 }
 
-git_reset() {
-    read -p "Introduzca commit para restablecer: " reset_commit
-
-    git reset --hard "$reset_commit"
-}
 
 # Main logic
 
