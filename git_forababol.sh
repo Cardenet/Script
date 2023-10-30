@@ -64,6 +64,7 @@ add_commit_push() {
     git add .
     git commit -m "$commit_msg"
     git push origin main
+    echo "--------------------------------------------------------------------"
 }
 
 pull_changes() {
