@@ -11,7 +11,15 @@ clone_repo() {
     github_url_regex='^(https?|git)://(www\.)?github\.com/[a-zA-Z0-9-]+/[a-zA-Z0-9_.-]+$'
 
     if [[ $repo_url =~ $github_url_regex ]]; then
-        git clone "$repo_url" "$clone_dir"
+        if [ ! -d "$clone_dir" ]; then
+            sudo mkdir -p "$clone_dir"  # Crear la ruta si no existe
+            echo "La ruta $clone_dir ha sido creada."
+            sudo chmod uo+rwx $clone_dir
+            git config --global --add safe.directory $clone_dir
+            git clone "$repo_url" "$clone_dir"
+        else
+            git clone "$repo_url" "$clone_dir"
+        fi
     else
         echo "URL de GitHub no válido. Por favor, proporciona un enlace válido de GitHub."
     fi
@@ -26,36 +34,22 @@ create_branch() {
     git checkout -b "$branch_name"
     echo "--------------------------------------------------------------------"
 }
-
-stage_changes() {
+add_commit_push() {
     echo "--------------------------------------------------------------------"
-    echo "Esta opción se utiliza en caso de solo modificar algun archivo especifico"
+    echo "Esta opción se utiliza para subir archivos"
+    
+    
     read -p "Introduzca los nombres de los archivos a escenificar (separados por espacios): " files
-    echo "--------------------------------------------------------------------"
-
-    git add ${files}
-    echo "--------------------------------------------------------------------"
-
-}
-
-commit_changes() {
-    echo "--------------------------------------------------------------------"
     read -p "Escriba el comentario de guardado: " commit_msg
-
-    git commit -m "$commit_msg"
-    echo "--------------------------------------------------------------------"
-}
-
-push_changes() {
-    echo "--------------------------------------------------------------------"
-    echo "Esta opción se utiliza en caso de subirlo a una rama diferente"
     read -p "Escribra la branch para subirla: " push_branch
-
+    echo "--------------------------------------------------------------------"
+    git add ${files}
+    git commit -m "$commit_msg"
     git push origin "$push_branch"
     echo "--------------------------------------------------------------------"
 }
 
-add_commit_push() {
+add_commit_push_ez() {
     echo "--------------------------------------------------------------------"
     echo "Esta opción se utiliza en caso de hacer una subida rapida y facil"
     read -p "Escriba el comentario de guardado: " commit_msg
@@ -110,16 +104,14 @@ while true; do
     echo "Selecciona una opción:"
     echo "1) Descargar un repositorio (clone)"
     echo "2) Crear una nueva rama (checkout)"
-    echo "3) Escenificar cambios (add)"
-    echo "4) Guardar cambios (commit)"
-    echo "5) Subir cambios (push)"
-    echo "6) Subida rapida y facil de los cambios (add, commit y push)"
-    echo "7) Descargar cambios de la rama especifica (pull)"
-    echo "8) Descargar cambios rapido (pull)"
-    echo "9) Mezclar ramas (merge)"
-    echo "10) Ver el estado del git (status)"
-    echo "11) Mirar si hay algun cambio disponible (fetch)"
-    echo "12) Salir"
+    echo "3) Subida de los cambios (add, commit y push)"
+    echo "4) Subida rapida y facil de los cambios (add, commit y push)"
+    echo "5) Descargar cambios de la rama especifica (pull)"
+    echo "6) Descargar cambios rapido (pull)"
+    echo "7) Mezclar ramas (merge)"
+    echo "8) Ver el estado del git (status)"
+    echo "9) Mirar si hay algun cambio disponible (fetch)"
+    echo "10) Salir"
 
     read -p "Escriba la opcion: " choice
 
@@ -131,33 +123,27 @@ while true; do
         create_branch
         ;;
     3)
-        stage_changes
-        ;;
-    4)
-        commit_changes
-        ;;
-    5)
-        push_changes
-        ;;
-    6)
         add_commit_push
         ;;
-    7)
+    4)
+        add_commit_push_ez
+        ;;
+    5)
         pull_changes
         ;;
-    8)
+    6)
         fast_pull_changes
         ;;
-    9)
+    7)
         merge_branch
         ;;
-    10)
+    8)
         git_status
         ;;
-    11)
+    9)
         git_fetch
         ;;
-    12)
+    10)
         echo "Hasta luego..."
         break
         ;;
