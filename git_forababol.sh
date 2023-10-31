@@ -18,6 +18,7 @@ clone_repo() {
             git config --global --add safe.directory $clone_dir
             git clone "$repo_url" "$clone_dir"
         else
+            sudo chmod uo+rwx $clone_dir
             git clone "$repo_url" "$clone_dir"
         fi
     else
