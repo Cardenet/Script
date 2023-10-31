@@ -145,7 +145,7 @@ while true; do
         ;;
     10)
         echo "Hasta luego..."
-        break
+        exit 0
         ;;
     *) echo "Opcion invalida" ;;
     esac
